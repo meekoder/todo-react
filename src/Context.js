@@ -17,7 +17,8 @@ export const Provider = function({children}) {
 
   return (
     <Context.Provider value={{
-      todos
+      todos,
+      setTodos
     }}>
       {children}
     </Context.Provider>

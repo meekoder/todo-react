@@ -1,10 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import Textbox from './addTodo/Textbox';
+import Todos from './todos/Todos';
 
 function App() {
   return (
-    <Textbox />
+    <div>
+      <Textbox />
+      <Todos />
+    </div>
   );
 }
 
