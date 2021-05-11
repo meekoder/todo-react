@@ -14,8 +14,17 @@ app.get('/api/todos', (req, res) => {
   db.getTodos()
     .then((todos) => {
       res.send(todos.rows);
-    });
+    })
+    .catch((err) => console.log(err));
 });
+
+app.post('/api/todos', (req, res) => {
+  db.addTodo(req.body)
+    .then((todo) => {
+      res.send(todo);
+    })
+    .catch((err) => console.log(err));
+})
 
 const PORT = 3001;
 app.listen(PORT, () => {
