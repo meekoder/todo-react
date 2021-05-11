@@ -18,10 +18,18 @@ app.get('/api/todos', (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.put('/api/todos', (req, res) => {
+app.post('/api/todos', (req, res) => {
   db.addTodo(req.body)
     .then((todo) => {
       res.send(todo);
+    })
+    .catch((err) => console.log(err));
+});
+
+app.put('/api/todos', (req, res) => {
+  db.completeTodo(req.body)
+    .then(() => {
+      res.send('todo deleted!');
     })
     .catch((err) => console.log(err));
 });

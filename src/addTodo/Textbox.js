@@ -5,15 +5,14 @@ function Textbox() {
   const [todo, setTodo] = useState(""); 
   const { todos, setTodos } = useContext(Context);
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     setTodo(e.target.value);
-  };
+  }
 
-  function handleAdd(e) {
-    e.preventDefault();
+  function handleAdd() {
     const obj = { todo };
     fetch('/api/todos', {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
