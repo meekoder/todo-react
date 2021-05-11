@@ -1,5 +1,4 @@
 import { React, useState } from 'react';
-import Add from './Add';
 
 function Textbox() {
   const [todo, setTodo] = useState(""); 
@@ -8,20 +7,25 @@ function Textbox() {
     setTodo(e.target.value);
   };
 
-  function handleAdd() {
+  function handleAdd(e) {
+    e.preventDefault();
     console.log(todo)
+    const obj = { todo };
     fetch('/api/todos', {
-      method: 'POST',
-      body: JSON.stringify(todo)
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(obj)
     })
       .then((r) => r.json())
-      .then((s) => console.log(s));
+      .catch((err) => console.log(err));
   }
 
   return (
     <div>
       <input type="text" onChange={(e) => handleChange(e)}></input>
-      <Add onClick={handleAdd()}/>
+      <button type="submit" onClick={handleAdd}>Add Todo</button>
     </div>
   );
 }
